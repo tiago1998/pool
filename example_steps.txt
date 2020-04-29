@@ -1,0 +1,1 @@
+google.com:width=1028&height=768;x=343&y=408;delay=30
