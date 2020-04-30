@@ -21,7 +21,7 @@ height=$5
 
 printf "step=$step steps=$steps display=$display width=$width height=$height\n"
 
-exit 0
+exit 0 #TODO fixes-needed
 
 #scale
 st=`expr $step + 1`
@@ -34,7 +34,7 @@ sx=`echo $sxy | cut -d '&' -f1 | cut -d '=' -f2`
 sy=`echo $sxy | cut -d '&' -f2 | cut -d '=' -f2`
 
 
-type bc > /dev/null 2> /dev/null || apt install -y bc
+type bc > /dev/null 2> /dev/null || apt install -y bc > /dev/null
 
 x=`echo "scale=2; $sx * $width / $swidth" | bc`
 y=`echo "scale=2; $sy * $height / $sheight" | bc`

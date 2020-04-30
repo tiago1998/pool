@@ -9,7 +9,7 @@ def link() :
     return data.list_links[data.current_link]
 
 
-
+''' unused
 def append(req) :
     global data
     
@@ -26,3 +26,4 @@ def append(req) :
     threading.Thread(target=filemanager.save_list, args=(data.filename_steps, data.list_steps)).start()
 
     return "ok"
+'''

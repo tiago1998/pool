@@ -4,7 +4,7 @@ import os
 
 
 #
-def checkStep(req, lenStep=0) :
+def checkStep(req, isGetStep=0, lenStep=0) :
 	info = req.split('_')
 	step = int(info[1])
 	display = info[2]
@@ -26,10 +26,13 @@ def checkStep(req, lenStep=0) :
                 time.sleep(dly)
                 req = [ "next", str(step+1), str(display),
 str(width), str(height), "("+url+")"]
-                return checkStep("_".join(req), lenStep+1)
+                return checkStep("_".join(req), isDoStep, lenStep+1)
 
-	
-        return doStep(step, steps, display, width, height,url, lenStep+1)
+
+        if not isGetStep :
+            return doStep(step, steps, display, width, height, url, lenStep+1)
+        else :
+           return steps.split(';')[step];
 
 
 
@@ -51,7 +54,7 @@ def doStep(step, steps, display, width, height, url, lenStep) :
                 if delay :
 			time.sleep(delay)
 			req = [ "next", str(step+2), str(display), str(width), str(height), "("+url+")"]
-			return checkStep("_".join(req), lenStep+1)
+			return checkStep("_".join(req), 0, lenStep+1)
 
 	return "ok_"+str(lenStep)
 

@@ -2,8 +2,8 @@
 
 
 import sys
-if len(sys.argv) < 5 :
-	print("use mode:\n\t"+sys.argv[0]+" port list-links list-steps key")
+if len(sys.argv) != 4:
+	print("use mode:\n\t"+sys.argv[0]+" port list-steps key")
 	sys.exit(127)
 
 
@@ -36,9 +36,10 @@ def answerClient(client, clientaddr) :
             client.send(link.append(req))
         elif req.startswith("doStep") :
             client.send(step.checkStep(req))
+        elif req.startswith("getStep") :
+            client.send(step.checkStep(req, 1))
         else :
             client.close()
-            return 1
             break
     return 1
 
@@ -52,7 +53,7 @@ def main() :
 
 	print ("[*] loading links")
 	sys.stdout.flush()
-	loaders.loadLinks(data.filename_links)
+	loaders.loadLinks(data.filename_steps)
 	print ("[+] "+str(len(data.list_links))+" links loaded\n[*] loading steps")
 	sys.stdout.flush()
         loaders.loadSteps(data.filename_steps)
