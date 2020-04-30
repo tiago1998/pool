@@ -26,7 +26,7 @@ def checkStep(req, isGetStep=0, lenStep=0) :
                 time.sleep(dly)
                 req = [ "next", str(step+1), str(display),
 str(width), str(height), "("+url+")"]
-                return checkStep("_".join(req), isDoStep, lenStep+1)
+                return checkStep("_".join(req), isGetStep, lenStep+1)
 
 
         if not isGetStep :
