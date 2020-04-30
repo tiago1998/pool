@@ -32,7 +32,16 @@ str(width), str(height), "("+url+")"]
         if not isGetStep :
             return doStep(step, steps, display, width, height, url, lenStep+1)
         else :
-           return steps.split(';')[step];
+            st=steps.split(';')[step];
+            sc=steps.split(';')[0];
+            xy=st.split('&')
+            swh=sc.split('&')
+            sx=xy[0].split('=')[1]
+            sy=xy[1].split('=')[1]
+            swidth=swh[0].split('=')[1]
+            sheight=swh[1].split('=')[1]
+            x,y = scale(int(sx), int(sy), int(swidth), int(sheight), int(width), int(height))
+            return "ok_x="+str(x)+"&y="+str(y)+"_"+str(lenStep+1)
 
 
 
@@ -79,3 +88,9 @@ def isDelay(steps, step) :
         if s.startswith("delay=") :
 		return int(s.split('=')[1])
         return 0
+
+def scale(x, y, swidth, sheight, width, height) :
+    rx=x * width / swidth
+    ry=y * height / sheight
+
+    return rx, ry
