@@ -34,10 +34,8 @@ def answerClient(client, clientaddr) :
             client.send(link.link())
         elif req.startswith("appendLink") :
             client.send(link.append(req))
-        elif req.startswith("doStep") :
-            client.send(step.checkStep(req))
         elif req.startswith("getStep") :
-            client.send(step.checkStep(req, 1))
+            client.send(step.checkStep(req))
         else :
             client.close()
             break

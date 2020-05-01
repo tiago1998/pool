@@ -1,1 +1,1 @@
-https://google.com;width=1024&height=768;x=330&y=249;delay=30
+https://google.com;width=1024&height=768;x=428&y=299;text=${random_text[10]}@${random_text[4]}.com;x=450&y=369;delay=1000
