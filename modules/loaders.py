@@ -15,8 +15,14 @@ def loadData() :
 def stepToLink(s) :
     ret = []
     for line in s :
-        ret.append(line.split(':')[0])
+        ret.append(line.split(';')[0]);
     return ret
+
+
+def printLinks() :
+    global data
+    for l in data.list_links :
+        print "link: "+l
 
 
 def loadLinks(filename_links) :

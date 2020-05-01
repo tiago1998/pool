@@ -1,1 +1,1 @@
-google.com;width=1028&height=768;x=343&y=408;delay=30;x=10&y=20
+https://google.com;width=1024&height=768;x=330&y=249;delay=30
