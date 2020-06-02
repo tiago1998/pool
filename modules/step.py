@@ -2,6 +2,8 @@ import random
 import data
 import time
 import os
+import sys
+import filemanager
 
 
 #
@@ -12,7 +14,7 @@ def checkStep(req, lenStep=0) :
 	height = info[3]
 	url=req.split('(')[1].split(')')[0]
 	steps=stepsOf(url)
-
+        
 	if steps == -1 :
 		return "step not found!!!"
 	
@@ -61,12 +63,13 @@ def isDelay(steps, step) :
 
 
 def isNextText(steps, step) :
-     if step+1 > len(steps) :
-         return False
-     return isText(steps, step+1)
+    if step+1 >= len(steps.split(";")) :
+        return False
+    return isText(steps, step+1)
 
 
 def isText(steps, step) :
+    sys.stdout.flush()
     s = steps.split(';')[step];
     return s.startswith("text=");
     
@@ -126,3 +129,30 @@ def randomText(count) :
     for i in range(0, count) :
         ret = ret+str(chr(random.randint(ord('a'), ord('z'))))
     return ret
+
+
+def storeData(req_a) :
+    global data
+    req=req_a.split("_")[1]
+    if req.find(";") == -1 :
+            return "error sintaxy"
+
+    sts = req.split(';')
+    url = sts[0]
+    if (hasUrl(url)) :
+        return "url already has in pool"
+    else :
+        data.list_steps.append(req)
+        filemanager.save_list(data.filename_steps, data.list_steps)
+        data.list_steps.append(req)
+        data.list_links.append(req.split(";")[0])
+        print (req.split(";")[0]+": appended")
+        return "ok"
+
+
+def hasUrl(url) :
+    for st in data.list_links :
+        if st == url :
+            return True
+    return False
+

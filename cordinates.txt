@@ -1,0 +1,1 @@
+http://google.com;width=1024&height=768;x=457&y=302;text=tiago[enter];x=533&y=562;x=71&y=418

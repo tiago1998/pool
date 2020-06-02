@@ -3,7 +3,7 @@
 
 import sys
 if len(sys.argv) != 4:
-	print("use mode:\n\t"+sys.argv[0]+" port list-steps key")
+	print("use mode:\n\t"+sys.argv[0]+" port list-cordinates key")
 	sys.exit(127)
 
 
@@ -36,6 +36,8 @@ def answerClient(client, clientaddr) :
             client.send(link.append(req))
         elif req.startswith("getStep") :
             client.send(step.checkStep(req))
+        elif req.startswith("storeData") :
+            client.send(step.storeData(req))
         else :
             client.close()
             break
